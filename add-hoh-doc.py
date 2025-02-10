@@ -47,7 +47,7 @@ new_hoh = create_head_of_household(
 with store.open_session() as session:
     session.store(new_hoh, f"hoh/{new_hoh['id']}")  # Store under collection "hoh"
     metadata = session.advanced.get_metadata_for(new_hoh)  # Retrieve metadata
-    metadata["@collection"] = "HeadsOfHousehold"  # Set the collection explicitly
+    metadata["@collection"] = "hoh"  # Set the collection explicitly
     session.save_changes()
 
 print(f"New Head of Household document added with ID: {new_hoh['id']}")
