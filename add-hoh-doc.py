@@ -19,7 +19,7 @@ def create_head_of_household(first_name, middle_name, last_name, generation, dob
     spouse_id = hoh_id + "_spouse"  # Spouse ID is HOH ID + "spouse"
 
 
-    hoh_document = {
+    return {
         "@metadata": {"@collection": "hoh"},
         "@type": "headOfHousehold",
         "familyName": last_name,
@@ -47,7 +47,10 @@ new_hoh = create_head_of_household(
 
 # Save document to RavenDB
 with store.open_session() as session:
+    metadata = session.advanced.get_metadata_for(new_hoh)
+    metadata["@collection"] = "hoh"  # Set collection name explicitly
     session.store(new_hoh, f"hoh/{new_hoh['id']}")  # Store under collection "hoh"
     session.save_changes()
 
 print(f"New Head of Household document added with ID: {new_hoh['id']}")
+print(f"Spouse ID: {new_hoh['spouse']['id']}")

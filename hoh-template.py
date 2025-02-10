@@ -10,7 +10,7 @@ store.initialize()
 # Define Head of household template
 # All ids will take the form: {family name} + generation + "-" seq 
 hoh_template = {
-    "@type": "headOfHousehold",
+    "@type": "headOfHouseholdTemplate",
     "familyName": "",
     "id": "",
     "fName": "",
