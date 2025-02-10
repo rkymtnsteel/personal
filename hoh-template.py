@@ -14,6 +14,7 @@ hoh_template = {
     "familyName": "",
     "id": "",
     "fName": "",
+    "mName": "",
     "lName": "",
     "generation": "",
     "DOB": "",
