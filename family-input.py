@@ -30,7 +30,7 @@ def create_head_of_household(first_name, middle_name, last_name, generation, dob
     }
 
 def create_spouse(hoh_id, first_name, middle_name, last_name, generation, dob, occupation, children):
-    spouse_id = f"{hoh_id}_spouse"
+    spouse_id = f"{hoh_id}_Spouse"
     return {
         "@metadata": {"@collection": "family"},
         "@type": "spouse",
