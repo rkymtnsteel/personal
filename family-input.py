@@ -120,5 +120,5 @@ while True:
                     "gender": values[f'child_{i}_gender']
                 }
                 children.append(child)
-            new_entry = create_spouse(hoh_id, first_name, middle_name, last_name, generation)
-::contentReference[oaicite:0]{index=0}
+            new_entry = create_spouse(hoh_id, first_name, middle_name, last_name, generation, dob, occupation, children)
+# ::contentReference[oaicite:0]{index=0}
