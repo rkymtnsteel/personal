@@ -63,7 +63,7 @@ layout = [
     [sg.Button('Add Child'), sg.Button('Submit'), sg.Button('Cancel')]
 ]
 
-window = sg.Window('Update Spouse & Children Form', layout)
+window = sg.Window('Update Family Form', layout)
 
 child_count = 0
 loaded_spouse = None
