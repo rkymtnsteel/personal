@@ -106,6 +106,8 @@ while True:
         gender = values['gender']
         hoh_id = values['hoh_id']
 
+        new_entry = None  # Initialize new_entry to avoid the "not defined" error
+        
         if entry_type == 'Head of Household':
             new_entry = create_head_of_household(first_name, middle_name, last_name, generation, dob, occupation)
         elif entry_type == 'Spouse':
@@ -123,14 +125,11 @@ while True:
             new_entry = create_spouse(hoh_id, first_name, middle_name, last_name, generation, dob, occupation, children)
         elif entry_type == 'Child':
             new_entry = create_child(first_name, middle_name, last_name, generation, dob, gender)
+        
+        if new_entry:  # Ensure new_entry is not None before storing
+            with store.open_session() as session:
+                session.store(new_entry, new_entry['id'])
+                session.save_changes()
+            sg.popup(f"New {entry_type} document added with ID: {new_entry['id']}")
         else:
-            sg.popup("Invalid entry type selected.")
-            continue
-
-    # Store the new entry in RavenDB
-    with store.open_session() as session:
-        session.store(new_entry, new_entry['id'])
-        session.save_changes()
-
-    sg.popup(f"New {entry_type} document added with ID: {new_entry['id']}")
-# ::contentReference[oaicite:0]{index=0}
+            sg.popup("Error: Entry type not recognized or missing information.")
