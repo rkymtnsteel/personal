@@ -52,12 +52,12 @@ def add_child_form(child_num):
 
 # Define the update form layout
 layout = [
-    [sg.Text('Enter Spouse ID'), sg.InputText(key='spouse_id'), sg.Button('Load')],
-    [sg.Text('Spouse First Name'), sg.InputText(key='spouse_first_name')],
-    [sg.Text('Spouse Middle Name'), sg.InputText(key='spouse_middle_name')],
-    [sg.Text('Spouse Last Name'), sg.InputText(key='spouse_last_name')],
-    [sg.Text('Spouse DOB (YYYY-MM-DD)'), sg.InputText(key='spouse_dob')],
-    [sg.Text('Spouse Occupation'), sg.InputText(key='spouse_occupation')],
+    [sg.Text('Enter ID'), sg.InputText(key='spouse_id'), sg.Button('Load')],
+    [sg.Text('First Name'), sg.InputText(key='spouse_first_name')],
+    [sg.Text('Middle Name'), sg.InputText(key='spouse_middle_name')],
+    [sg.Text('Last Name'), sg.InputText(key='spouse_last_name')],
+    [sg.Text('DOB (YYYY-MM-DD)'), sg.InputText(key='spouse_dob')],
+    [sg.Text('Occupation'), sg.InputText(key='spouse_occupation')],
     [sg.Text('Children')],
     [sg.Column([[]], key='children_column')],
     [sg.Button('Add Child'), sg.Button('Submit'), sg.Button('Cancel')]
