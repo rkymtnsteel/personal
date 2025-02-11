@@ -21,8 +21,8 @@ window = sg.Window("Custom Form Colors", layout)
 # Function to fetch spouse data from RavenDB
 def fetch_member(id):
     with store.open_session() as session:
-        spouse = session.load(id)
-        return id if id else None
+        member = session.load(id)
+        return member if member else None
 
 # Function to update spouse data in RavenDB
 def update_member(id, first_name, middle_name, last_name, dob, occupation, children):
