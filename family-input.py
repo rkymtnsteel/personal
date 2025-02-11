@@ -130,7 +130,7 @@ while True:
             with store.open_session() as session:
                 session.store(new_entry, new_entry['id'])
                 if entry_type == 'Head of Household':
-                    metadata = session.advanced.get_metadata_for(c)  # Retrieve metadata
+                    metadata = session.advanced.get_metadata_for(new_entry)  # Retrieve metadata
                     metadata["@collection"] = "hoh"  # Set the collection explicitly
                 else:
                     metadata = session.advanced.get_metadata_for(new_entry)  # Retrieve metadata
