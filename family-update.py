@@ -7,6 +7,17 @@ database_name = "familybook"
 store = ravendb.DocumentStore(urls=server_url, database=database_name)
 store.initialize()
 
+sg.theme("LightBlue3")
+
+layout = [
+    [sg.Text('Enter Name:', text_color="black")],  # Change text color
+    [sg.InputText(key="name", background_color="white", text_color="black")],  # Change input field color
+    [sg.Button("Submit", button_color=("white", "green"))],  # Change button color
+]
+
+window = sg.Window("Custom Form Colors", layout)
+
+
 # Function to fetch spouse data from RavenDB
 def fetch_spouse(spouse_id):
     with store.open_session() as session:
