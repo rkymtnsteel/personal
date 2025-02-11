@@ -52,7 +52,7 @@ def add_child_form(child_num):
 
 # Define the update form layout
 layout = [
-    [sg.Text('Enter ID'), sg.InputText(key='ID'), sg.Button('Load')],
+    [sg.Text('Enter ID'), sg.InputText(key='id'), sg.Button('Load')],
     [sg.Text('First Name'), sg.InputText(key='first_name')],
     [sg.Text('Middle Name'), sg.InputText(key='middle_name')],
     [sg.Text('Last Name'), sg.InputText(key='last_name')],
