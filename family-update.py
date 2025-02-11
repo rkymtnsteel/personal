@@ -7,7 +7,7 @@ database_name = "familybook"
 store = ravendb.DocumentStore(urls=server_url, database=database_name)
 store.initialize()
 
-sg.theme("LightBlue3")
+sg.theme("LightBlue5")
 
 layout = [
     [sg.Text('Enter Name:', text_color="black")],  # Change text color
