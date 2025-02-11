@@ -9,7 +9,7 @@ store.initialize()
 
 # Define Head of household template
 # All ids will take the form: {family name} + generation + "-" seq 
-hoh_template = {
+spouse_template = {
     "@type": "spouseTemplate",
     "familyName": "",
     "id": "",
@@ -25,13 +25,14 @@ hoh_template = {
             "name": "",
             "gender": "",
             "DOB": "",
+            "generation": "",
             "id": ""
         }
     ]
 }
 
 with store.open_session() as session:
-    session.store(hoh_template, "templates/family")
+    session.store(spouse_template, "templates/family")
     session.save_changes()
     
 print("Template saved")

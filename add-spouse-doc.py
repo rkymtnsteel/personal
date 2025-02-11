@@ -7,34 +7,36 @@ database_name = "familybook"
 store = ravendb.DocumentStore(urls=server_url, database=database_name)
 store.initialize()
 
-def generate_id(first_name, middle_name, last_name, generation):
+def generate_id(first_name, middle_name, last_name):
     first_initial = first_name[0].upper() if first_name else ""
     middle_initial = middle_name[0].upper() if middle_name else "X"  # Use "X" if no middle name
     last_part = last_name[:3].upper() if last_name else "XXX"  # First 3 letters of last name
-    return f"{first_initial}{middle_initial}{last_part}_{generation}"
+    return f"{first_initial}{middle_initial}{last_part}"
 
 # Function to create a Head of Household document
-def create_head_of_household(first_name, middle_name, last_name, generation, dob, occupation):
-    hoh_id = generate_id(first_name, middle_name, last_name, generation)  # Generate custom ID
-    spouse_id = hoh_id + "_spouse"  # Spouse ID is HOH ID + "spouse"
+def create_hoh_spouse(hoh_id, first_name, middle_name, last_name, generation, dob, occupation, children):
+    children=[{"name": "Child Name", "gender": "M/F", "DOB": "YYYY-MM-DD", "generation": "Gen2"}]
+    hoh_id = generate_id("Dean", "A", "Geary") + "_Gen1"
+    spouse_id = generate_id(first_name, middle_name, last_name)  # Generate custom ID
+    spouse_id = hoh_id + "_" + spouse_id  # Spouse ID is HOH ID + "spouse"
 
 
     return {
-        "@metadata": {"@collection": "hoh"},
-        "@type": "headOfHousehold",
+        "@metadata": {"@collection": "family"},
+        "@type": "spouse",
         "familyName": last_name,
-        "id": hoh_id,
+        "id": spouse_id,
         "fName": first_name,
         "mName": middle_name,
         "lName": last_name,
         "generation": generation,
         "DOB": dob,
         "occupation": occupation,
-        "spouse": {"id": spouse_id}
+        "children": children
     }
 
 # Sample document using the template
-new_hoh = create_head_of_household(
+new_spouse = create_hoh_spouse(
     first_name="Dean",
     middle_name="A",
     last_name="Geary",
@@ -45,7 +47,7 @@ new_hoh = create_head_of_household(
 
 # Save document to RavenDB
 with store.open_session() as session:
-    session.store(new_hoh, f"hoh/{new_hoh['id']}")  # Store under collection "hoh"
+    session.store(new_hoh, f"family/{new_hoh['id']}")  # Store under collection "hoh"
     metadata = session.advanced.get_metadata_for(new_hoh)  # Retrieve metadata
     metadata["@collection"] = "hoh"  # Set the collection explicitly
     session.save_changes()
