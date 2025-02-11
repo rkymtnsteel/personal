@@ -121,4 +121,16 @@ while True:
                 }
                 children.append(child)
             new_entry = create_spouse(hoh_id, first_name, middle_name, last_name, generation, dob, occupation, children)
+        elif entry_type == 'Child':
+            new_entry = create_child(first_name, middle_name, last_name, generation, dob, gender)
+        else:
+            sg.popup("Invalid entry type selected.")
+            continue
+
+    # Store the new entry in RavenDB
+    with store.open_session() as session:
+        session.store(new_entry, new_entry['id'])
+        session.save_changes()
+
+    sg.popup(f"New {entry_type} document added with ID: {new_entry['id']}")
 # ::contentReference[oaicite:0]{index=0}
